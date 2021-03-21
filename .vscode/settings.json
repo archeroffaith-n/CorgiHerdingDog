@@ -1,4 +1,5 @@
-﻿{
+{
+    "csharp.referencesCodeLens.enabled": false,
     "files.exclude":
     {
         "**/.DS_Store":true,
