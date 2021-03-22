@@ -96,12 +96,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e289a51f41dd8049ad529209f15b5ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minSpeed: 1
+  minSpeed: 2
   maxSpeed: 8
-  sigmaSpeed: 4
-  viewDistance: 10
-  herdFollowIntention: 0.6
+  sigmaSpeed: 5
+  viewDistance: 6
+  herdFollowIntention: 0.3
   herdDistance: 3
+  moveFadeSpeed: 0.2
+  decreaseTime: 0
+  desiredDirection: {x: 0, y: 0, z: 0}
 --- !u!143 &1987670141322347501
 CharacterController:
   m_ObjectHideFlags: 0

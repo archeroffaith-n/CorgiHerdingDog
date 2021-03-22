@@ -13,10 +13,12 @@ public class sheepMovement : MonoBehaviour
     public float viewDistance;
     public float herdFollowIntention;
     public float herdDistance;
+    public float moveFadeSpeed;
     private CharacterController characterController;
+    public float decreaseTime = 0.0f;
 
     // Testing
-    private static Vector3 desiredDirection;
+    public Vector3 desiredDirection = Vector3.zero;
     
     private static float RandomGaussian(float minValue = 0.0f, float maxValue = 1.0f, float sigma = 1.0f)
     {
@@ -52,12 +54,6 @@ public class sheepMovement : MonoBehaviour
 
     void Update()
     {
-        // Testing code
-        // Update desired direction
-        if (Input.GetKeyDown(KeyCode.Space)) {
-            desiredDirection = new Vector3(Random.Range(-1.0f, 1.0f), 0, Random.Range(-1.0f, 1.0f)).normalized;
-        }
-        
         Collider[] seeSheeps = Physics.OverlapSphere(transform.position, viewDistance, sheepLayerMask);
 
         Vector3 herdFollowDirection = Vector3.zero;
@@ -72,18 +68,19 @@ public class sheepMovement : MonoBehaviour
         Vector3 resultingDirection = desiredDirection + herdFollowDirection.normalized * herdFollowIntention;
 
         // Walk
-        characterController.Move(resultingDirection.normalized * walkSpeed * Time.deltaTime);
+        resultingDirection = (resultingDirection.normalized - new Vector3(0, resultingDirection.normalized.y, 0)).normalized;
+        characterController.Move(resultingDirection * walkSpeed * Time.deltaTime);
+        transform.position = transform.position - new Vector3(0, transform.position.y - 0.5f, 0);
+        if (desiredDirection.magnitude != 0) {
+            desiredDirection *= Mathf.Clamp(1 - moveFadeSpeed * decreaseTime, 0, 1) / desiredDirection.magnitude;
+            decreaseTime += Time.deltaTime;
+        }
     }
 
     void OnDrawGizmos() 
     {
         Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(transform.position, viewDistance);
-    }
-
-    void OnGUI() 
-    {
-        GUI.Label(new Rect(10, 10, 100, 20), desiredDirection.ToString());
     }
 }
 
