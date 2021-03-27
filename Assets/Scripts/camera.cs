@@ -9,23 +9,16 @@ public class camera : MonoBehaviour
     public float speedV = 2.0f;
 
     public float R;
-    public float h;
     private float yaw = 0.0f;
     private float pitch = 0.0f;
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void LateUpdate()
+    void Update()
     {
-        yaw += speedH * Input.GetAxis("Mouse X");
-        pitch -= speedV * Input.GetAxis("Mouse Y");
+        yaw = yaw + speedH * Input.GetAxis("Mouse X");
+        pitch = Mathf.Clamp(pitch - speedV * Input.GetAxis("Mouse Y"), 0.0f, 90.0f);
         transform.eulerAngles = new Vector3(pitch, yaw, 0.0f);
         float phi = -Mathf.Deg2Rad * yaw;
-        transform.position = new Vector3(R * Mathf.Sin(phi), h, -R * Mathf.Cos(phi)) + corgi.transform.position;
+        float theta = Mathf.Deg2Rad * pitch;
+        transform.position = new Vector3(R * Mathf.Cos(theta) * Mathf.Sin(phi) , R * Mathf.Sin(theta), -R * Mathf.Cos(theta) * Mathf.Cos(phi)) + corgi.transform.position;
     }
 }

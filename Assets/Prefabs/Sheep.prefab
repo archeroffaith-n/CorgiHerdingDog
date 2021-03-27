@@ -99,11 +99,11 @@ MonoBehaviour:
   minSpeed: 2
   maxSpeed: 8
   sigmaSpeed: 5
-  viewDistance: 6
   herdFollowIntention: 0.3
-  herdDistance: 3
+  randomWalkIntention: 0.5
   moveFadeSpeed: 0.2
   decreaseTime: 0
+  prefab: {fileID: 0}
   desiredDirection: {x: 0, y: 0, z: 0}
 --- !u!143 &1987670141322347501
 CharacterController:

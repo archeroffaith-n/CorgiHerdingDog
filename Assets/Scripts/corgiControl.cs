@@ -35,15 +35,24 @@ public class corgiControl : MonoBehaviour
             }
         }
 
+        // Move
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
         Vector3 move = new Vector3(x, 0, z).normalized;
         move = Quaternion.AngleAxis(mainCamera.transform.rotation.eulerAngles.y, Vector3.up) * move;
+        controller.Move((move - new Vector3(0, move.y, 0)) * Time.deltaTime * playerSpeed);
 
+        // Fix height
+        transform.position = transform.position - new Vector3(0, transform.position.y - 0.5f, 0);
+    }
+
+    void LateUpdate()
+    {
+        float x = Input.GetAxis("Horizontal");
+        float z = Input.GetAxis("Vertical");
+
+        // Rotate
         float targetAngle = Mathf.Atan2(x, z) * Mathf.Rad2Deg + mainCamera.transform.rotation.eulerAngles.y;
         transform.rotation = Quaternion.Euler(0f, targetAngle, 0f);
-        controller.Move((move - new Vector3(0, move.y, 0)) * Time.deltaTime * playerSpeed);
-        transform.position = transform.position - new Vector3(0, transform.position.y - 0.5f, 0);
-        
     }
 }
