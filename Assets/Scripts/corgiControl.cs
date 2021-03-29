@@ -43,7 +43,7 @@ public class corgiControl : MonoBehaviour
         controller.Move((move - new Vector3(0, move.y, 0)) * Time.deltaTime * playerSpeed);
 
         // Fix height
-        transform.position = transform.position - new Vector3(0, transform.position.y - 0.5f, 0);
+        transform.position = transform.position - new Vector3(0, transform.position.y - 1.0f, 0);
     }
 
     void LateUpdate()
@@ -52,7 +52,7 @@ public class corgiControl : MonoBehaviour
         float z = Input.GetAxis("Vertical");
 
         // Rotate
-        float targetAngle = Mathf.Atan2(x, z) * Mathf.Rad2Deg + mainCamera.transform.rotation.eulerAngles.y;
+        float targetAngle = Mathf.Atan2(x, z) * Mathf.Rad2Deg + mainCamera.transform.rotation.eulerAngles.y + 90;
         transform.rotation = Quaternion.Euler(0f, targetAngle, 0f);
     }
 }
