@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 1987670141322347504}
   - component: {fileID: 1987670141322347505}
   - component: {fileID: 1987670141322347501}
-  - component: {fileID: -7888207746185349602}
   m_Layer: 6
   m_Name: Sheep
   m_TagString: Untagged
@@ -93,18 +92,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1987670141322347510}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6e289a51f41dd8049ad529209f15b5ce, type: 3}
+  m_Script: {fileID: 11500000, guid: 580e67f3107659e4193ed91925f1fe96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minSpeed: 2
-  maxSpeed: 8
-  sigmaSpeed: 5
+  minSpeed: 3
+  maxSpeed: 6
+  sigmaSpeed: 3
   herdFollowIntention: 0.3
   randomWalkIntention: 0.5
-  moveFadeSpeed: 0.2
-  decreaseTime: 0
-  prefab: {fileID: 0}
-  desiredDirection: {x: 0, y: 0, z: 0}
+  moveFadeSpeed: 0.1
 --- !u!143 &1987670141322347501
 CharacterController:
   m_ObjectHideFlags: 0
@@ -117,22 +113,9 @@ CharacterController:
   m_Enabled: 1
   serializedVersion: 2
   m_Height: 1
-  m_Radius: 0.5
+  m_Radius: 0.78
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!65 &-7888207746185349602
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1987670141322347510}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 0.28, z: 0}
